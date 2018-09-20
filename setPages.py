@@ -2,67 +2,86 @@ import pyautogui, time
 
 pyautogui.FAILSAFE = True
 
+#variables
+
+firstPageListX = 88
+pageListY = 990
+furthestPageListX = 890
+pageListItemWidth = 35
+viewPortTitleX = 777
+viewPortTitleY = 190
+titleBlockTitleX = 1400
+titleBlockTitleY = 544
+rightHandX = 1460
+rightHandY = 85
+leftHandX = 1435
+leftHandY = 85
+downHandX = 1445
+downHandY = 110
+emptySpaceX = 1600
+emptySpaceY =  500
+
 def slowDoubleClick(x, y):
 	pyautogui.click(x,y)
 	time.sleep(0.1)
 	pyautogui.click(x,y)
 	
 def createPage():
-	pyautogui.mouseDown(xi,yi)
-	pyautogui.keyDown('ctrlleft')
-	pyautogui.moveTo(xi + 8, yi, duration=0.1)
+	pyautogui.mouseDown(pageListX,pageListY)
+	pyautogui.keyDown('ctrl')
+	pyautogui.moveTo(pageListX + 8, pageListY, duration=0.1)
+	time.sleep(0.1)
 	pyautogui.mouseUp()
-	pyautogui.keyUp('ctrlleft')
+	time.sleep(0.1)
+	pyautogui.keyUp('ctrl')
+	time.sleep(0.1)
 	if i < 24:
-		pyautogui.doubleClick(xi + 35, yi)
+		pyautogui.doubleClick(pageListX + 35, pageListY)
+		time.sleep(0.1)
 		if i < 10:
-			pyautogui.typewrite('0' + str(i), interval=0.1)
-		else:
-			pyautogui.typewrite(str(i), interval=0.25)
-		pyautogui.press('enter')
+			pyautogui.press('0')
+			time.sleep(0.1)			
 	else:
-		pyautogui.click(1150, 990)
-		time.sleep(.25)
-		pyautogui.click(1153, 967)
-		time.sleep(.25)
-		pyautogui.doubleClick(930, 990)
-		time.sleep(.25)
-		pyautogui.typewrite(str(i), interval=0.1)
-		time.sleep(.25)
-		pyautogui.press('enter')
-		time.sleep(.25)
+		pyautogui.keyDown('ctrl')
+		pyautogui.press('pagedown')
+		pyautogui.keyUp('ctrl')
+		time.sleep(0.1)
+		pyautogui.doubleClick(furthestPageListX, pageListY)
+		time.sleep(0.1)
+	pyautogui.typewrite(str(i), interval=0.1)
+	pyautogui.press('enter')
 	
 def enterViewPort():
-	slowDoubleClick(777, 190)
+	slowDoubleClick(viewPortTitleX, viewPortTitleY)
 	time.sleep(0.1)
 
 def moveViewPort():
     if i % 10 == 1:
-        pyautogui.click(1445, 110)
+        pyautogui.click(downHandX, downHandY)
         time.sleep(.75)
         for j in range(9):
-            pyautogui.click(1435, 85)
+            pyautogui.click(leftHandX, leftHandY)
             time.sleep(.75)
     else:
-        pyautogui.click(1460, 85)
+        pyautogui.click(rightHandX, rightHandY)
         time.sleep(.75)
 
 def copyTitle():
-	slowDoubleClick(777, 190)
+	slowDoubleClick(viewPortTitleX, viewPortTitleY)
 	time.sleep(.1)
 	pyautogui.hotkey('ctrl', 'c')
 	pyautogui.press('esc')
 	pyautogui.press('esc')
 	time.sleep(.1)
 	
-	slowDoubleClick(1600, 500)
+	slowDoubleClick(emptySpaceX, emptySpaceY)
 	time.sleep(.1)
-	slowDoubleClick(1400, 544)
-	slowDoubleClick(1400, 544)
+	slowDoubleClick(titleBlockTitleX, titleBlockTitleY)
+	slowDoubleClick(titleBlockTitleX, titleBlockTitleY)
 	time.sleep(.25)
 	pyautogui.hotkey('ctrl', 'a')
 	pyautogui.hotkey('ctrl', 'v')
-	pyautogui.click(1600, 500)
+	pyautogui.click(emptySpaceX, emptySpaceY)
     
 
 start = int(input('Enter number of first page to be made: '))
@@ -70,8 +89,10 @@ end = int(input('Enter number of final page to be made: '))
 
 startTime = time.time()
 
-xi = start * 35 + 52
-yi = 990
+if start < 24:
+	pageListX = (start - 1) * pageListItemWidth + firstPageListX
+else:
+	pageListX = furthestPageListX
 
 time.sleep(1)
 
@@ -80,7 +101,7 @@ pyautogui.click(800,10)
 for i in range(start, end + 1):
 	createPage()
 	if i < 24:
-		xi += 35
+		pageListX += pageListItemWidth
 	enterViewPort()
 	moveViewPort()
 	copyTitle()
