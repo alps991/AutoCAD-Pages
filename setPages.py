@@ -11,10 +11,9 @@ def slowDoubleClick(x, y):
 def createPage():
 	pyautogui.mouseDown(pageListX,pageListY)
 	pyautogui.keyDown('ctrl')
-	pyautogui.moveTo(pageListX + 8, pageListY, duration=0.1)
+	pyautogui.moveTo(pageListX + 12, pageListY, duration=0.15)
 	time.sleep(0.1)
 	pyautogui.mouseUp()
-	time.sleep(0.1)
 	pyautogui.keyUp('ctrl')
 	time.sleep(0.1)
 	if i < 24:
