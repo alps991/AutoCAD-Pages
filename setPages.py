@@ -1,25 +1,7 @@
 import pyautogui, time
+from setup import *
 
 pyautogui.FAILSAFE = True
-
-#variables
-
-firstPageListX = 88
-pageListY = 990
-furthestPageListX = 890
-pageListItemWidth = 35
-viewPortTitleX = 777
-viewPortTitleY = 190
-titleBlockTitleX = 1400
-titleBlockTitleY = 544
-rightHandX = 1460
-rightHandY = 85
-leftHandX = 1435
-leftHandY = 85
-downHandX = 1445
-downHandY = 110
-emptySpaceX = 1600
-emptySpaceY =  500
 
 def slowDoubleClick(x, y):
 	pyautogui.click(x,y)
