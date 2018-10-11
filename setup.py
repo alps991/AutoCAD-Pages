@@ -2,10 +2,10 @@
 
 firstPageListX = 88
 pageListY = 990
-furthestPageListX = 890
+furthestPageListX = 930
 pageListItemWidth = 35
-viewPortTitleX = 770
-viewPortTitleY = 200
+viewPortTitleX = 765
+viewPortTitleY = 196
 titleBlockTitleX = 1400
 titleBlockTitleY = 544
 rightHandX = 1460

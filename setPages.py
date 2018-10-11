@@ -17,7 +17,7 @@ def createPage():
 	pyautogui.keyUp('ctrl')
 	time.sleep(0.1)
 	if i < 24:
-		pyautogui.doubleClick(pageListX + 35, pageListY)
+		pyautogui.doubleClick(pageListX + pageListItemWidth, pageListY)
 		time.sleep(0.1)
 		if i < 10:
 			pyautogui.press('0')
@@ -27,7 +27,7 @@ def createPage():
 		pyautogui.press('pagedown')
 		pyautogui.keyUp('ctrl')
 		time.sleep(0.1)
-		pyautogui.doubleClick(furthestPageListX, pageListY)
+		pyautogui.doubleClick(furthestPageListX - pageListItemWidth, pageListY)
 		time.sleep(0.1)
 	pyautogui.typewrite(str(i), interval=0.1)
 	pyautogui.press('enter')
@@ -70,7 +70,7 @@ end = int(input('Enter number of final page to be made: '))
 
 startTime = time.time()
 
-if start < 24:
+if start < 25:
 	pageListX = (start - 1) * pageListItemWidth + firstPageListX
 else:
 	pageListX = furthestPageListX
@@ -81,7 +81,7 @@ pyautogui.click(800,10)
 
 for i in range(start, end + 1):
 	createPage()
-	if i < 24:
+	if i < 25:
 		pageListX += pageListItemWidth
 	enterViewPort()
 	moveViewPort()
